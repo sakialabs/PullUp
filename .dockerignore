@@ -1,0 +1,15 @@
+.git
+.agents
+.codex
+.netlify
+.env*
+node_modules
+**/node_modules
+**/.next
+**/.venv
+**/.pytest_cache
+**/.ruff_cache
+**/__pycache__
+**/*.db
+docs
+tests

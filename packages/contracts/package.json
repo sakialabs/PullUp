@@ -1,0 +1,10 @@
+{
+  "name": "@pullup/contracts",
+  "version": "0.1.0",
+  "description": "Versioned public contracts and synthetic fixtures shared across PullUp surfaces.",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./fixtures/*": "./fixtures/*"
+  }
+}

@@ -1,0 +1,53 @@
+# PullUp API
+
+This service is the read-only public Place slice of PullUp's planned FastAPI modular
+monolith. It persists the canonical fictional Cedar Commons fixture in normalized
+SQLAlchemy models, validates every cost rollup and source reference, and exposes only:
+
+- `GET /health`
+- `GET /v1/places`
+- `GET /v1/places/{slug}`
+
+The API deliberately contains no application, allocation, ranking, payment, or public
+write route. Discovery criteria are explanatory only, and every Place response carries
+the fixture's synthetic-data notice. Both Place routes emit strong ETags.
+
+## Local SQLite run
+
+Python 3.13+ and `uv` are required.
+
+```bash
+cd apps/api
+uv sync
+uv run alembic upgrade head
+uv run python -m pullup_api.seed
+PULLUP_AUTO_CREATE_SCHEMA=false PULLUP_SEED_SYNTHETIC=false uv run uvicorn pullup_api.main:app --reload
+```
+
+For a quick local-only start, `uv run uvicorn pullup_api.main:app --reload` creates the
+SQLite schema and idempotently loads the fixture at startup. The default database is the
+file `apps/api/pullup.db`; override it with `PULLUP_DATABASE_URL`.
+
+## PostgreSQL Compose run
+
+From the repository root:
+
+```bash
+docker compose -f infra/compose/compose.yaml up --build
+```
+
+This starts PostGIS-backed PostgreSQL and the API, runs Alembic, and idempotently seeds
+the same read-only fixture. The Compose password is intentionally local-only and must
+never be reused in a deployed environment.
+
+## Verification
+
+```bash
+cd apps/api
+uv run ruff check .
+uv run pytest
+```
+
+Deployed environments should run `alembic upgrade head` as a release step and set both
+`PULLUP_AUTO_CREATE_SCHEMA=false` and `PULLUP_SEED_SYNTHETIC=false` for the serving
+process. The seed command still validates the canonical source fixture before writing.

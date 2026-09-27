@@ -1,0 +1,30 @@
+{
+  "name": "pullup",
+  "version": "0.2.0",
+  "description": "Public-benefit housing infrastructure by Sakia Labs.",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "workspaces": [
+    "apps/web",
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "bash scripts/bootstrap.sh",
+    "dev": "npm run dev:web",
+    "dev:web": "npm run dev --workspace @pullup/web",
+    "dev:all": "bash scripts/dev.sh",
+    "build": "npm run build --workspace @pullup/web",
+    "start": "npm run start --workspace @pullup/web",
+    "lint": "npm run lint --workspace @pullup/web",
+    "typecheck": "npm run typecheck --workspace @pullup/web",
+    "test:contracts": "npm run test:contracts --workspace @pullup/web",
+    "test:docs": "node scripts/check-doc-links.mjs",
+    "lint:api": "env UV_CACHE_DIR=${PULLUP_UV_CACHE_DIR:-/tmp/pullup-uv-cache} uv run --project apps/api ruff check apps/api",
+    "test:api": "env UV_CACHE_DIR=${PULLUP_UV_CACHE_DIR:-/tmp/pullup-uv-cache} uv run --project apps/api pytest -q",
+    "test:rendered": "node --test tests/rendered-html.test.mjs",
+    "test": "bash scripts/check.sh",
+    "docker:up": "bash scripts/docker-up.sh"
+  }
+}

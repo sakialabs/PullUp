@@ -1,0 +1,72 @@
+name: pullup-place-slice
+
+services:
+  postgres:
+    image: postgis/postgis:17-3.5
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-pullup}
+      POSTGRES_USER: ${POSTGRES_USER:-pullup}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pullup-local-only}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pullup -d pullup"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5432:5432"
+    volumes:
+      - pullup-postgres:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ../../apps/api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PULLUP_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-pullup}:${POSTGRES_PASSWORD:-pullup-local-only}@postgres:5432/${POSTGRES_DB:-pullup}
+      PULLUP_FIXTURE_PATH: /fixtures/cedar-commons.synthetic.v1.json
+      PULLUP_AUTO_CREATE_SCHEMA: "false"
+      PULLUP_SEED_SYNTHETIC: "false"
+    command:
+      - /bin/sh
+      - -ec
+      - alembic upgrade head && python -m pullup_api.seed && exec uvicorn pullup_api.main:app --host 0.0.0.0 --port 8000
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)"
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../../packages/contracts/fixtures/cedar-commons.synthetic.v1.json:/fixtures/cedar-commons.synthetic.v1.json:ro
+
+  web:
+    build:
+      context: ../..
+      dockerfile: apps/web/Dockerfile
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000').then(response => { if (!response.ok) process.exit(1) })"
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    ports:
+      - "3000:3000"
+
+volumes:
+  pullup-postgres:

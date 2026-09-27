@@ -1,0 +1,429 @@
+{
+  "schemaVersion": "place-public.v1",
+  "id": "place-cedar-commons-g2",
+  "slug": "cedar-commons-g2",
+  "publicationStatus": "synthetic-review-fixture",
+  "syntheticDataNotice": "Fictional review data only. No provider, address, price, availability, accessibility claim, or housing policy on this page is live.",
+  "provider": {
+    "id": "provider-cedar-street-coop",
+    "displayName": "Cedar Street Housing Co-operative",
+    "legalForm": "Fictional nonprofit housing co-operative",
+    "ownershipModel": "Resident-governed co-operative on community-held land (synthetic)",
+    "serviceCommitment": "Publishes complete costs, repair routes, and allocation rules for review before any real listing can go live.",
+    "identityStatus": "synthetic-not-verified",
+    "checkedAt": "2026-09-24",
+    "sourceId": "source-provider-packet"
+  },
+  "building": {
+    "id": "building-cedar-commons",
+    "providerId": "provider-cedar-street-coop",
+    "name": "Cedar Commons",
+    "neighbourhood": "Old East Village",
+    "municipality": "London",
+    "province": "ON",
+    "countryCode": "CA",
+    "locationPrecision": "neighbourhood-only",
+    "sourceId": "source-provider-packet"
+  },
+  "name": "Cedar Commons · Home G2",
+  "unitLabel": "Home G2",
+  "placeType": "One-bedroom co-operative home",
+  "householdType": "One or two people",
+  "bedrooms": 1,
+  "summary": "A ground-floor co-op home with a shared garden, tool library, and a clear monthly cost range.",
+  "image": {
+    "src": "/images/place-exterior.webp",
+    "alt": "Representative brick apartment building with balconies and mature trees",
+    "caption": "Representative prototype image · not listing evidence",
+    "evidenceStatus": "representative-only",
+    "sourceId": "source-prototype-media"
+  },
+  "availability": {
+    "status": "available-from",
+    "availableFrom": "2026-11-01",
+    "unitsAvailable": 1,
+    "checkedAt": "2026-09-24",
+    "sourceId": "source-provider-packet"
+  },
+  "tenure": {
+    "type": "Co-operative occupancy agreement",
+    "initialTerm": "Initial 12-month occupancy period",
+    "ongoingSecurity": "Designed to continue after the initial period while the agreement, co-op rules, and applicable law are followed.",
+    "rightsSummary": "Written reasons, a human review route, repair reporting, privacy, and applicable legal rights remain available.",
+    "allocationSummary": "A separately published eligibility and offer process applies. Flow matches and app activity never decide allocation.",
+    "checkedAt": "2026-09-24",
+    "sourceId": "source-provider-packet"
+  },
+  "accessibilityFacts": [
+    {
+      "id": "access-step-free-route",
+      "category": "entrance",
+      "feature": "Step-free route from sidewalk to unit",
+      "status": "confirmed-in-fixture",
+      "detail": "The synthetic walkthrough records a level route with an automatic main-entry door.",
+      "sourceId": "source-accessibility-walkthrough",
+      "checkedAt": "2026-09-23"
+    },
+    {
+      "id": "access-door-width",
+      "category": "circulation",
+      "feature": "860 mm clear unit doorway",
+      "status": "confirmed-in-fixture",
+      "detail": "Hall route is recorded as 1,120 mm at its narrowest point in the review fixture.",
+      "sourceId": "source-accessibility-walkthrough",
+      "checkedAt": "2026-09-23"
+    },
+    {
+      "id": "access-bathroom-tub",
+      "category": "bathroom",
+      "feature": "Bathing setup is not roll-in",
+      "status": "not-available",
+      "detail": "The bathroom has a tub with grab bars. A roll-in shower is not shown in this fixture.",
+      "sourceId": "source-accessibility-walkthrough",
+      "checkedAt": "2026-09-23"
+    },
+    {
+      "id": "access-visual-alert",
+      "category": "sensory",
+      "feature": "Visual fire alarm coverage",
+      "status": "needs-review",
+      "detail": "Coverage inside the unit must be confirmed by a qualified person before publication.",
+      "sourceId": "source-accessibility-walkthrough",
+      "checkedAt": "2026-09-23"
+    }
+  ],
+  "totalDamage": {
+    "id": "cost-cedar-g2-2026-09-v1",
+    "version": "2026-09-24.v1",
+    "currency": "CAD",
+    "period": "monthly",
+    "effectiveFrom": "2026-11-01",
+    "reviewedAt": "2026-09-24",
+    "nextReviewAt": "2026-10-15",
+    "sourceIds": [
+      "source-cost-sheet",
+      "source-provider-packet"
+    ],
+    "totals": {
+      "knownMonthlyMinor": 112000,
+      "estimatedMonthlyMinMinor": 5900,
+      "estimatedMonthlyMaxMinor": 8700,
+      "requiredMonthlyMinMinor": 117900,
+      "requiredMonthlyMaxMinor": 120700,
+      "optionalMonthlyMinMinor": 6500,
+      "optionalMonthlyMaxMinor": 6500,
+      "moveInRequiredMinor": 55000,
+      "moveInRefundableMinor": 55000
+    },
+    "items": [
+      {
+        "id": "cost-housing-charge",
+        "label": "Housing charge",
+        "category": "housing-charge",
+        "amountMinMinor": 99500,
+        "amountMaxMinor": 99500,
+        "frequency": "monthly",
+        "certainty": "known",
+        "optional": false,
+        "refundable": false,
+        "recipient": "Cedar Street Housing Co-operative",
+        "purpose": "Building operations, financing, repairs, and replacement reserve.",
+        "changeRule": "Reviewed through the co-op budget process with written notice.",
+        "sourceId": "source-cost-sheet"
+      },
+      {
+        "id": "cost-heat-water",
+        "label": "Heat and water",
+        "category": "utilities",
+        "amountMinMinor": 8000,
+        "amountMaxMinor": 8000,
+        "frequency": "monthly",
+        "certainty": "known",
+        "optional": false,
+        "refundable": false,
+        "recipient": "Cedar Street Housing Co-operative",
+        "purpose": "Pooled building heat and water service.",
+        "changeRule": "Reconciled against utility cost during the annual budget review.",
+        "sourceId": "source-cost-sheet"
+      },
+      {
+        "id": "cost-internet",
+        "label": "Building internet",
+        "category": "connectivity",
+        "amountMinMinor": 4500,
+        "amountMaxMinor": 4500,
+        "frequency": "monthly",
+        "certainty": "known",
+        "optional": false,
+        "refundable": false,
+        "recipient": "Building internet provider",
+        "purpose": "Shared residential internet plan.",
+        "changeRule": "Contract changes require written notice before the charge changes.",
+        "sourceId": "source-cost-sheet"
+      },
+      {
+        "id": "cost-electricity",
+        "label": "Electricity estimate",
+        "category": "utilities",
+        "amountMinMinor": 3500,
+        "amountMaxMinor": 5500,
+        "frequency": "monthly",
+        "certainty": "estimated",
+        "optional": false,
+        "refundable": false,
+        "recipient": "Resident-selected electricity retailer",
+        "purpose": "Unit electricity use.",
+        "changeRule": "Actual amount changes with use and the resident's utility plan.",
+        "sourceId": "source-cost-sheet"
+      },
+      {
+        "id": "cost-insurance",
+        "label": "Tenant insurance estimate",
+        "category": "insurance",
+        "amountMinMinor": 2400,
+        "amountMaxMinor": 3200,
+        "frequency": "monthly",
+        "certainty": "estimated",
+        "optional": false,
+        "refundable": false,
+        "recipient": "Resident-selected insurer",
+        "purpose": "Personal contents and liability coverage required by the draft agreement.",
+        "changeRule": "The insurer sets the actual premium; this range must be reconfirmed.",
+        "sourceId": "source-cost-sheet"
+      },
+      {
+        "id": "cost-member-share",
+        "label": "Member share",
+        "category": "member-share",
+        "amountMinMinor": 50000,
+        "amountMaxMinor": 50000,
+        "frequency": "one-time",
+        "certainty": "known",
+        "optional": false,
+        "refundable": true,
+        "recipient": "Cedar Street Housing Co-operative",
+        "purpose": "Refundable co-op membership share in this synthetic model.",
+        "changeRule": "Refund follows the final approved agreement and applicable law.",
+        "sourceId": "source-provider-packet"
+      },
+      {
+        "id": "cost-key-deposit",
+        "label": "Key deposit",
+        "category": "deposit",
+        "amountMinMinor": 5000,
+        "amountMaxMinor": 5000,
+        "frequency": "one-time",
+        "certainty": "known",
+        "optional": false,
+        "refundable": true,
+        "recipient": "Cedar Street Housing Co-operative",
+        "purpose": "Replacement cost for issued physical keys.",
+        "changeRule": "Returned when all issued keys are returned, subject to applicable law.",
+        "sourceId": "source-provider-packet"
+      },
+      {
+        "id": "cost-parking",
+        "label": "Outdoor parking",
+        "category": "parking",
+        "amountMinMinor": 6500,
+        "amountMaxMinor": 6500,
+        "frequency": "monthly",
+        "certainty": "known",
+        "optional": true,
+        "refundable": false,
+        "recipient": "Cedar Street Housing Co-operative",
+        "purpose": "One optional outdoor parking space.",
+        "changeRule": "Charged only if selected; changes follow the published parking policy.",
+        "sourceId": "source-cost-sheet"
+      }
+    ],
+    "note": "The required monthly range includes known charges plus electricity and insurance estimates. Optional parking is separate."
+  },
+  "discovery": {
+    "matchedCount": 3,
+    "totalPriorities": 4,
+    "criteria": [
+      {
+        "id": "priority-total-damage",
+        "label": "Under your $1,250 monthly limit",
+        "matched": true,
+        "explanation": "Required monthly Total Damage is estimated at $1,179–$1,207."
+      },
+      {
+        "id": "priority-step-free",
+        "label": "Step-free entrance",
+        "matched": true,
+        "explanation": "The synthetic accessibility walkthrough records a level route to Home G2."
+      },
+      {
+        "id": "priority-pets",
+        "label": "One cat permitted",
+        "matched": true,
+        "explanation": "The draft house rules in the fixture permit one cat, subject to the final agreement."
+      },
+      {
+        "id": "priority-private-outdoor",
+        "label": "Private outdoor space",
+        "matched": false,
+        "explanation": "The garden is shared; Home G2 has no private balcony or yard."
+      }
+    ],
+    "allocationFirewall": "These matches only explain discovery. They never affect eligibility, offer order, price, repair priority, rights, or tenure."
+  },
+  "headsUp": [
+    {
+      "id": "heads-up-laundry",
+      "title": "Shared laundry can be busy",
+      "detail": "Two ground-floor machines serve 18 homes. The fixture records the busiest time as Sunday afternoon.",
+      "sourceId": "source-provider-packet",
+      "checkedAt": "2026-09-24"
+    },
+    {
+      "id": "heads-up-bathroom",
+      "title": "No roll-in shower",
+      "detail": "Home G2 has a tub with grab bars. Ask for a qualified access review if that setup does not work for you.",
+      "sourceId": "source-accessibility-walkthrough",
+      "checkedAt": "2026-09-23"
+    },
+    {
+      "id": "heads-up-street-noise",
+      "title": "Morning street noise",
+      "detail": "The representative review notes traffic noise near the bedroom from roughly 07:00 to 09:00.",
+      "sourceId": "source-building-log",
+      "checkedAt": "2026-09-22"
+    }
+  ],
+  "vibe": [
+    "Quiet after 22:00, with optional shared meals twice a month.",
+    "Shared garden and tool library; participation is always optional.",
+    "Fragrance-aware common-area cleaning supplies are used in this synthetic fixture."
+  ],
+  "backstory": [
+    {
+      "date": "2025-06-18",
+      "title": "Heat-pump retrofit recorded",
+      "detail": "The synthetic building log records installation and commissioning; a real source would require provider review.",
+      "sourceId": "source-building-log"
+    },
+    {
+      "date": "2026-08-12",
+      "title": "Main-entry door service",
+      "detail": "The automatic opener was serviced in the synthetic maintenance history.",
+      "sourceId": "source-building-log"
+    }
+  ],
+  "aroundHere": [
+    {
+      "kind": "transit",
+      "label": "Frequent bus route",
+      "detail": "About 280 m away in the review fixture; route and service level require live verification.",
+      "sourceId": "source-neighbourhood-check"
+    },
+    {
+      "kind": "food",
+      "label": "Full grocery store",
+      "detail": "About 650 m away in the review fixture.",
+      "sourceId": "source-neighbourhood-check"
+    },
+    {
+      "kind": "library",
+      "label": "Public library branch",
+      "detail": "About 1.1 km away in the review fixture.",
+      "sourceId": "source-neighbourhood-check"
+    },
+    {
+      "kind": "park",
+      "label": "Neighbourhood green space",
+      "detail": "About 500 m away in the review fixture.",
+      "sourceId": "source-neighbourhood-check"
+    }
+  ],
+  "finePrint": {
+    "title": "Synthetic co-operative occupancy agreement · review draft",
+    "jurisdiction": "Ontario, Canada",
+    "plainLanguageSummary": "This fixture describes an occupancy relationship with published charges, repair duties, written notice, and a human review route. It is not legal advice or a live offer.",
+    "residentRights": [
+      "Receive the complete agreement and cost version before accepting.",
+      "Report repairs and request disability-related accommodation without retaliation.",
+      "Receive reasons and a human review route for material decisions."
+    ],
+    "residentResponsibilities": [
+      "Pay approved housing charges when due or ask for help early.",
+      "Follow lawful safety rules and respect shared spaces.",
+      "Tell the co-op when a repair or access need changes."
+    ],
+    "humanHelp": "A real launch requires a staffed provider contact and an independent legal or tenant-support route. Neither is represented by this fixture.",
+    "sourceId": "source-provider-packet"
+  },
+  "corrections": {
+    "route": "Use Need a Hand? → Report a Place fact",
+    "explanation": "A qualified provider worker must review every material correction and preserve the previous published version."
+  },
+  "sources": [
+    {
+      "id": "source-provider-packet",
+      "title": "Synthetic provider publishing packet",
+      "kind": "provider-record",
+      "publisher": "PullUp product team",
+      "sourceDate": "2026-09-22",
+      "checkedAt": "2026-09-24",
+      "status": "synthetic",
+      "note": "Created for schema, interface, and accessibility review; not supplied by a real housing provider."
+    },
+    {
+      "id": "source-cost-sheet",
+      "title": "Synthetic 2026 cost worksheet",
+      "kind": "cost-sheet",
+      "publisher": "PullUp product team",
+      "sourceDate": "2026-09-22",
+      "checkedAt": "2026-09-24",
+      "status": "synthetic",
+      "note": "Amounts are fictional and exist only to test versioned Total Damage."
+    },
+    {
+      "id": "source-accessibility-walkthrough",
+      "title": "Synthetic accessibility walkthrough",
+      "kind": "accessibility-walkthrough",
+      "publisher": "PullUp product team",
+      "sourceDate": "2026-09-23",
+      "checkedAt": "2026-09-23",
+      "status": "synthetic",
+      "note": "Measurements and features require qualified human verification before any real publication."
+    },
+    {
+      "id": "source-building-log",
+      "title": "Synthetic maintenance and comfort log",
+      "kind": "building-log",
+      "publisher": "PullUp product team",
+      "sourceDate": "2026-09-22",
+      "checkedAt": "2026-09-22",
+      "status": "synthetic",
+      "note": "No real building or resident information is present."
+    },
+    {
+      "id": "source-neighbourhood-check",
+      "title": "Synthetic neighbourhood distance check",
+      "kind": "public-record",
+      "publisher": "PullUp product team",
+      "sourceDate": "2026-09-22",
+      "checkedAt": "2026-09-22",
+      "status": "synthetic",
+      "note": "Distances are representative and require live map and accessibility verification."
+    },
+    {
+      "id": "source-prototype-media",
+      "title": "Representative prototype photography",
+      "kind": "representative-media",
+      "publisher": "PullUp prototype",
+      "sourceDate": "2026-09-20",
+      "checkedAt": "2026-09-24",
+      "status": "synthetic",
+      "note": "The image does not prove the condition, layout, or features of a real Place."
+    }
+  ],
+  "freshness": {
+    "publishedAt": "2026-09-24",
+    "checkedAt": "2026-09-24",
+    "nextReviewAt": "2026-10-15"
+  }
+}
