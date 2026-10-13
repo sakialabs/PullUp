@@ -5,6 +5,13 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./api": "./src/generated/pullup-api.ts",
     "./fixtures/*": "./fixtures/*"
+  },
+  "scripts": {
+    "generate:api": "openapi-typescript openapi/pullup-api.v1.json -o src/generated/pullup-api.ts"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.13.0"
   }
 }

@@ -13,9 +13,67 @@ services:
       timeout: 5s
       retries: 10
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - pullup-postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--save", "60", "1"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - pullup-redis:/data
+
+  object-storage:
+    image: quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z
+    command: ["server", "/data", "--console-address", ":9001"]
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-pullup-local}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-pullup-local-only}
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://127.0.0.1:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
+    volumes:
+      - pullup-object-storage:/data
+
+  mqtt:
+    image: eclipse-mosquitto:2.0-openssl
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_sub -h 127.0.0.1 -t '$$SYS/broker/version' -C 1 -W 3 >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "127.0.0.1:1883:1883"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - pullup-mqtt:/mosquitto/data
+
+  mail:
+    image: axllent/mailpit:v1.27
+    environment:
+      MP_DATABASE: /data/mailpit.db
+    healthcheck:
+      test: ["CMD", "/mailpit", "readyz"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "127.0.0.1:1025:1025"
+      - "127.0.0.1:8025:8025"
+    volumes:
+      - pullup-mail:/data
 
   api:
     build:
@@ -42,9 +100,26 @@ services:
       timeout: 3s
       retries: 10
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     volumes:
       - ../../packages/contracts/fixtures/cedar-commons.synthetic.v1.json:/fixtures/cedar-commons.synthetic.v1.json:ro
+
+  worker:
+    build:
+      context: ../../apps/api
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      PULLUP_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-pullup}:${POSTGRES_PASSWORD:-pullup-local-only}@postgres:5432/${POSTGRES_DB:-pullup}
+      PULLUP_AUTO_CREATE_SCHEMA: "false"
+      PULLUP_SEED_SYNTHETIC: "false"
+    command:
+      - /bin/sh
+      - -ec
+      - alembic upgrade head && exec pullup-worker
 
   web:
     build:
@@ -66,7 +141,11 @@ services:
       timeout: 3s
       retries: 10
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
 
 volumes:
   pullup-postgres:
+  pullup-redis:
+  pullup-object-storage:
+  pullup-mqtt:
+  pullup-mail:

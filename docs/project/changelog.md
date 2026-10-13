@@ -10,6 +10,14 @@ Short, decision-useful milestones only. PullUp remains **pre-T0**; completed tec
 
 ## Milestones
 
+### 2026-10-12 — Local service spine
+
+- Completed the synthetic local Compose stack with PostgreSQL/PostGIS, Redis, S3-compatible object storage, MQTT, captured email, API, and web services.
+- Added persistent local volumes, readiness checks, and clearly local-only credentials without changing the pre-T0 boundary.
+- Added a transactional outbox migration and a separate worker with atomic enqueue, at-least-once delivery, durable retry state, and idempotency guidance.
+- Added a versioned OpenAPI export, generated TypeScript client types, a typed web client, and contract-drift verification.
+- Added a README gallery using the four current interface captures.
+
 ### 2026-09-26 — API and persistence spine
 
 - Added a read-only FastAPI Place API, normalized SQLAlchemy model, and idempotent synthetic seed.

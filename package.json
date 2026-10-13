@@ -20,6 +20,8 @@
     "lint": "npm run lint --workspace @pullup/web",
     "typecheck": "npm run typecheck --workspace @pullup/web",
     "test:contracts": "npm run test:contracts --workspace @pullup/web",
+    "generate:api": "env UV_CACHE_DIR=${PULLUP_UV_CACHE_DIR:-/tmp/pullup-uv-cache} uv run --project apps/api python scripts/export-openapi.py && npm run generate:api --workspace @pullup/contracts",
+    "test:api-client": "node scripts/check-openapi-client.mjs",
     "test:docs": "node scripts/check-doc-links.mjs",
     "lint:api": "env UV_CACHE_DIR=${PULLUP_UV_CACHE_DIR:-/tmp/pullup-uv-cache} uv run --project apps/api ruff check apps/api",
     "test:api": "env UV_CACHE_DIR=${PULLUP_UV_CACHE_DIR:-/tmp/pullup-uv-cache} uv run --project apps/api pytest -q",

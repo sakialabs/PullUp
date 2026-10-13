@@ -7,6 +7,7 @@ cd "$pullup_root"
 npm run lint
 npm run typecheck
 npm run test:contracts
+npm run test:api-client
 npm run test:docs
 npm run lint:api
 npm run test:api

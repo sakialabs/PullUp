@@ -19,6 +19,7 @@ dependencies = [
 
 [project.scripts]
 pullup-seed = "pullup_api.seed:main"
+pullup-worker = "pullup_api.worker:main"
 
 [dependency-groups]
 dev = [

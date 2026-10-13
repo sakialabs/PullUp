@@ -8,6 +8,16 @@ It helps everyday people find a suitable home, understand the full cost, apply o
 
 The experience feels warm and simple. The system underneath is serious: community land, cooperative and nonprofit ownership, cost-based housing, secure tenure, resident power, shared infrastructure, quiet intelligence, and climate-ready homes.
 
+## See PullUp
+
+The current prototype uses synthetic review data so the experience can be explored without implying that a real home, price, application, or service is live.
+
+| Flow and The Rundown | My Place |
+|---|---|
+| [![PullUp Flow showing a synthetic Place, Total Damage, and accessible decision controls](docs/screenshots/web-flow.png)](docs/screenshots/web-flow.png) | [![PullUp My Place dashboard showing home information, Fixes, and shared notices](docs/screenshots/web-my-place.png)](docs/screenshots/web-my-place.png) |
+| **Commons** | **Day One** |
+| [![PullUp Commons showing useful shared neighbourhood resources](docs/screenshots/web-commons.png)](docs/screenshots/web-commons.png) | [![PullUp Day One showing a trusted Twin, scoped permissions, and receipts](docs/screenshots/web-twin.png)](docs/screenshots/web-twin.png) |
+
 ## Why PullUp?
 
 Most housing apps make searching easier without changing who owns the land, who sets the price, where the money goes, or how little power residents have after move-in.
@@ -183,7 +193,7 @@ Physical, offline, and human fallbacks are required.
 
 The repository includes one end-to-end, synthetic Place for reviewing the public experience without presenting fictional housing information as live. It covers **Flow**, **Pull Up**, **The Rundown**, **Total Damage**, **Where It Goes**, accessibility facts, sources, **My Place**, **Commons**, and **Day One**. It does not accept real applications, payments, bookings, or access requests.
 
-The working slice uses a Next.js web app, a FastAPI modular monolith, a shared versioned Place fixture, and PostgreSQL-ready persistence. Native mobile remains deliberately parked while the responsive web and PWA path is proven.
+The working slice uses a Next.js web app, a FastAPI modular monolith, a shared versioned Place fixture, PostgreSQL-ready persistence, a transactional outbox worker, and a generated TypeScript API client. Native mobile remains deliberately parked while the responsive web and PWA path is proven.
 
 ## Run locally
 
@@ -212,6 +222,8 @@ For the containerized local stack:
 ```bash
 ./scripts/docker-up.sh
 ```
+
+This starts the web app and API plus local-only PostgreSQL/PostGIS, Redis, S3-compatible object storage, MQTT, and captured email services. The object-storage console is at [http://localhost:9001](http://localhost:9001), and captured email is at [http://localhost:8025](http://localhost:8025).
 
 ## Documentation
 

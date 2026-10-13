@@ -30,6 +30,7 @@ def test_initial_migration_upgrades_and_downgrades(
         "sources",
         "total_damage_versions",
         "total_damage_line_items",
+        "outbox_events",
     }.issubset(tables)
 
     command.check(config)

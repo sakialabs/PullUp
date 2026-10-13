@@ -75,8 +75,9 @@ A task is done only when:
 - [x] **PLAT-002 P0:** Configure npm workspaces and uv Python environment.  
   Owner: Platform
 
-- [ ] **PLAT-003 P0:** Add local PostgreSQL, PostGIS, Redis, object-storage emulator, MQTT, email capture, and service containers.  
-  Owner: Platform
+- [x] **PLAT-003 P0:** Add local PostgreSQL, PostGIS, Redis, object-storage emulator, MQTT, email capture, and service containers.  
+  Owner: Platform  
+  Proof exit: the local-only Compose stack defines isolated persistent services with health checks and validates as configuration; production residency, recovery, and security remain gated work.
 
 - [x] **PLAT-004 P0:** Create Next.js 16 web application using the latest security-patched Active LTS release.  
   Owner: Frontend
@@ -84,17 +85,19 @@ A task is done only when:
 - [x] **PLAT-005 P0:** Create FastAPI modular monolith and health endpoints.  
   Owner: Backend
 
-- [ ] **PLAT-006 P0:** Create worker process and transactional outbox skeleton.  
+- [x] **PLAT-006 P0:** Create worker process and transactional outbox skeleton.  
   Owner: Backend  
-  References: NFR-REL-03, NFR-REL-04
+  References: NFR-REL-03, NFR-REL-04  
+  Proof exit: committed events are processed at least once, rolled-back events do not leak, failures persist for retry, migration parity passes, and handlers are explicitly idempotent by event ID.
 
 - [x] **PLAT-007 P0:** Create PostgreSQL migration workflow and checks.  
   Owner: Data
   Proof exit: Alembic upgrade, downgrade, and model-parity checks pass; a fresh native PostgreSQL rehearsal is still required before pilot use.
 
-- [ ] **PLAT-008 P0:** Generate TypeScript API client from OpenAPI.  
+- [x] **PLAT-008 P0:** Generate TypeScript API client from OpenAPI.  
   Owner: Full stack  
-  References: NFR-INT-01
+  References: NFR-INT-01  
+  Proof exit: the versioned OpenAPI document and generated TypeScript paths are tracked, consumed by a typed web client, and protected by a deterministic drift check.
 
 - [ ] **PLAT-009 P0:** Configure Canadian-region development, staging, and production plans.  
   Owner: Platform  
